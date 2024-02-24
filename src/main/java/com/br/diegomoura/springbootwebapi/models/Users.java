@@ -1,15 +1,24 @@
 package com.br.diegomoura.springbootwebapi.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import java.util.Objects;
+@Entity
 public class Users {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String login;
-    private String password;
+    private String name;
+    private String email;
 
     //#region ... Constructor
     public Users() {}
-    public Users(String login, String password)  {
-        this.login = login;
-        this.password = password;
+    public Users(String name, String email)  {
+        this.name = name;
+        this.email = email;
     }
     //#endregion
 
@@ -20,17 +29,17 @@ public class Users {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return name;
     }
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
     //#endregion
 
@@ -39,9 +48,22 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
-                ", passaword='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
                 '}';
+    }
+    //#endregion
+
+    //#region ... Equals e HashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Users users)) return false;
+        return Objects.equals(id, users.id) && Objects.equals(name, users.name) && Objects.equals(email, users.email);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email);
     }
     //#endregion
 }
