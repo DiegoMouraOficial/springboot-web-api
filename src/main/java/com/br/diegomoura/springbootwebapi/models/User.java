@@ -1,13 +1,15 @@
 package com.br.diegomoura.springbootwebapi.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 @Entity
-public class Users {
+@Table(name="tb_user")
+public class User implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,8 +17,8 @@ public class Users {
     private String email;
 
     //#region ... Constructor
-    public Users() {}
-    public Users(String name, String email)  {
+    public User() {}
+    public User(String name, String email)  {
         this.name = name;
         this.email = email;
     }
@@ -58,8 +60,8 @@ public class Users {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Users users)) return false;
-        return Objects.equals(id, users.id) && Objects.equals(name, users.name) && Objects.equals(email, users.email);
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email);
     }
     @Override
     public int hashCode() {

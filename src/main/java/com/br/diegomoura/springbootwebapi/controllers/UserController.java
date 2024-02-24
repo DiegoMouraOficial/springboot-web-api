@@ -1,6 +1,6 @@
 package com.br.diegomoura.springbootwebapi.controllers;
 
-import com.br.diegomoura.springbootwebapi.models.Users;
+import com.br.diegomoura.springbootwebapi.models.User;
 import com.br.diegomoura.springbootwebapi.repositories.UserRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class UserController {
 
     @Operation(summary = "Listar", description = "Metódo que retorna todos os dados da Users", tags = "Users")
     @GetMapping()
-    public List<Users> getUsers() {
+    public List<User> getUsers() {
         return repository.findAll();
     }
 //    @GetMapping("/{username}")
@@ -28,7 +28,7 @@ public class UserController {
         repository.deleteById(id);
     }
     @PostMapping()
-    public void postUser (@RequestBody Users users) {
-        repository.save(users);
+    public void postUser (@RequestBody User user) {
+        repository.save(user);
     }
 }
