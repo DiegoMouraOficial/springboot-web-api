@@ -2,6 +2,7 @@ package com.br.diegomoura.springbootwebapi.controllers;
 
 import com.br.diegomoura.springbootwebapi.models.User;
 import com.br.diegomoura.springbootwebapi.repositories.UserRepository;
+import com.br.diegomoura.springbootwebapi.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,26 +10,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
-    private UserRepository repository;
+    private UserService userService;
 
-    @Operation(summary = "Listar", description = "Metódo que retorna todos os dados da Users", tags = "Users")
-    @GetMapping()
     public List<User> getUsers() {
-        return repository.findAll();
+        return userService.getAllUsers();
     }
-//    @GetMapping("/{username}")
-//    public Users getOneUser(@PathVariable("username") String username) {
-//        return repository.findByUsername(username);
-//    }
-    @DeleteMapping("/{id}")
-    public void deleteUser (@PathVariable("id") Long id) {
-        repository.deleteById(id);
+    @GetMapping("/{id}")
+    public User getUserByid(@PathVariable("id") Long id) {
+        return userService.getUserById(id);
     }
-    @PostMapping()
-    public void postUser (@RequestBody User user) {
-        repository.save(user);
+    @PostMapping("/{id}")
+    public User updateUser(@PathVariable("id") Long id, @RequestBody User userDetails) {
+        return userService.updateUser(id, userDetails);
     }
+
+    @DeleteMapping({"/{id}"})
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+        return "User deleted successfuly";
+    }
+
 }
