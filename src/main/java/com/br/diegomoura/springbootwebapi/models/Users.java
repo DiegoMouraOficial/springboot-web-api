@@ -3,13 +3,13 @@ package com.br.diegomoura.springbootwebapi.models;
 public class Users {
     private Integer id;
     private String login;
-    private String passaword;
+    private String password;
 
     //#region ... Constructor
     public Users() {}
-    public Users(String login, String passaword)  {
+    public Users(String login, String password)  {
         this.login = login;
-        this.passaword = passaword;
+        this.password = password;
     }
     //#endregion
 
@@ -26,11 +26,11 @@ public class Users {
     public void setLogin(String login) {
         this.login = login;
     }
-    public String getPassaword() {
-        return passaword;
+    public String getPassword() {
+        return password;
     }
-    public void setPassaword(String passaword) {
-        this.passaword = passaword;
+    public void setPassword(String password) {
+        this.password = password;
     }
     //#endregion
 
@@ -40,7 +40,7 @@ public class Users {
         return "Users{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", passaword='" + passaword + '\'' +
+                ", passaword='" + password + '\'' +
                 '}';
     }
     //#endregion

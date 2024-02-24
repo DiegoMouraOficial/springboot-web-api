@@ -24,8 +24,8 @@ public class UserRepository {
         System.out.println("LIST - Listando os usuários do sistema");
 
         List<Users> users = new ArrayList<>();
-        users.add(new Users("diego","passaword1"));
-        users.add(new Users("bruna","passaword2"));
+        users.add(new Users("diego","password1"));
+        users.add(new Users("bruna","password2"));
 
         return users;
     }
