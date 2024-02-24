@@ -19,12 +19,12 @@ public class UserController {
     public List<Users> getUsers() {
         return repository.findAll();
     }
-    @GetMapping("/{username}")
-    public Users getOneUser(@PathVariable("username") String username) {
-        return repository.findByUsername(username);
-    }
+//    @GetMapping("/{username}")
+//    public Users getOneUser(@PathVariable("username") String username) {
+//        return repository.findByUsername(username);
+//    }
     @DeleteMapping("/{id}")
-    public void deleteUser (@PathVariable("id") Integer id) {
+    public void deleteUser (@PathVariable("id") Long id) {
         repository.deleteById(id);
     }
     @PostMapping()
